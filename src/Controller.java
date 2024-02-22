@@ -15,7 +15,7 @@ public class Controller {
     }
 
     public void searchMovie(String title) {
-        movieCollection.search(title);
+        movieCollection.searchMovie(title);
     }
 
     public String removeMovie(String title) {
