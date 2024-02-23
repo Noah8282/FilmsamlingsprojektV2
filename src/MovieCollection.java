@@ -39,19 +39,42 @@ public class MovieCollection {
 
     }
 
-    public void searchMovie(String title) {
-        boolean hasFound = false;
+    public int searchMovie(String title) {
+        int count = 0;
         System.out.println("Search results can be seen below.");
         for (Movie m : movieCollection) {
             if (m.getTitle().toLowerCase().contains(title.toLowerCase())) {
                 System.out.println(m.toString());
-                hasFound = true;
+                count++;
             }
         }
-        if(!hasFound) {
+        if(count == 0) {
             System.out.println("No matches found in the movie collection");
         }
+        return count;
 
+    }
+
+    public String editMovie(String title, ArrayList<String> editValues) {
+        if(editValues.size() < 6) {
+            return "All values have not been inserted. Please try again";
+        }
+
+
+        for(Movie m : movieCollection) {
+            if(m.getTitle().toLowerCase().equalsIgnoreCase(title)) {
+                m.setTitle(editValues.get(0).trim());
+                m.setDirector(editValues.get(1).trim());
+                m.setGenre(editValues.get(2).trim());
+                m.setYearCreated(Integer.parseInt(editValues.get(3).trim()));
+                m.setLengthInMinutes(Integer.parseInt(editValues.get(4).trim()));
+                m.setInColor(!(editValues.get(5).trim()).equalsIgnoreCase("no"));
+                break;
+
+            }
+
+        }
+        return "Movie " + title + " has been edited!";
     }
 
 

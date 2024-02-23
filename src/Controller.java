@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Controller {
     MovieCollection movieCollection;
 
@@ -14,17 +16,17 @@ public class Controller {
         movieCollection.getList();
     }
 
-    public void searchMovie(String title) {
-        movieCollection.searchMovie(title);
+    public int searchMovie(String title) {
+        return movieCollection.searchMovie(title);
     }
 
     public String removeMovie(String title) {
         return movieCollection.removeMovie(title);
     }
 
-    /*public String editMovie(String searchElement, String searchString) {
-        return movieCollection.editMovie(searchElement,searchString);
-    }*/
+    public String editMovie(String title, ArrayList<String> editValues) {
+        return movieCollection.editMovie(title, editValues);
+    }
 
 
 

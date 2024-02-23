@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -6,6 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        scanner.useDelimiter("\n");
         Controller controller = new Controller();
         String SENTINAL = "exit";
         String input;
@@ -18,51 +20,62 @@ public class Main {
                     "Remove: Remove movie\n" +
                     "Edit: Edit a movie\n" +
                     "Exit: Exit the program");
-            input = scanner.nextLine().toLowerCase();
+            input = scanner.next().toLowerCase();
 
-            if(input.equals("add")) {
+            if (input.equals("add")) {
                 System.out.println("What is the title of the movie?");
-                title = scanner.nextLine();
+                title = scanner.next();
                 System.out.println("Who is the director of the movie?");
-                String director = scanner.nextLine();
+                String director = scanner.next();
                 System.out.println("What is the genre of the movie?");
-                String genre =  scanner.nextLine();
+                String genre = scanner.next();
                 System.out.println("What year was the movie created?");
                 int yearCreated = scanner.nextInt();
                 System.out.println("What is the length of the movie in minutes?");
-                int lengthInMinutes = scanner.nextInt();;
+                int lengthInMinutes = scanner.nextInt();
+                ;
                 System.out.println("Is the movie in color or black/white. Type Yes if in color. Type no if Black/White");
-                scanner.nextLine();
+                scanner.next();
                 boolean isInColor = (!scanner.nextLine().equalsIgnoreCase("no"));
 
-                System.out.println(controller.addMovie(title,director,genre,yearCreated,lengthInMinutes,isInColor));
+                System.out.println(controller.addMovie(title, director, genre, yearCreated, lengthInMinutes, isInColor));
             }
-            if(input.equals("list")) {
+            if (input.equals("list")) {
                 controller.getList();
             }
-            if(input.equals("search")) {
+            if (input.equals("search")) {
                 System.out.println("What is the title of the movie you'd wish to search for?");
-                title = scanner.nextLine();
+                title = scanner.next();
                 controller.searchMovie(title);
             }
-            if(input.equals("remove")) {
+            if (input.equals("remove")) {
                 System.out.println("What is the title of the movie you'd wish to remove?");
-                title = scanner.nextLine();
+                title = scanner.next();
                 System.out.println(controller.removeMovie(title));
             }
-            if(input.equals("edit")) {
-
-
+            if (input.equals("edit")) {
+                System.out.println("Please type the title of the movie you'd like to edit");
+                title = scanner.next();
+                int searhResult = controller.searchMovie(title);
+                if (searhResult != 1) {
+                    System.out.println("The system found 0 mathes or more than 1. See list if more than 1, and specify the exact title.");
+                } else {
+                    ArrayList<String> editValues = new ArrayList<>();
+                    System.out.println("Please input new values, seperating new by comma. Write as: Title, Director, Genre, yearCreated, Length In Minutes, If in color. Type yes if colored. If in Black/White type no.");
+                    Scanner editScanner = new Scanner(scanner.next());
+                    editScanner.useDelimiter(",");
+                    while (editScanner.hasNext()) {
+                        editValues.add(editScanner.next());
+                    }
+                    System.out.println(controller.editMovie(title, editValues));
+                    editScanner.close();
+                }
             }
-
-
-
             System.out.println();
         } while (!input.equals("exit"));
 
 
     }
-
 
 
 }
