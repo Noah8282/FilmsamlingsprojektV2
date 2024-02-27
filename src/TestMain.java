@@ -3,19 +3,12 @@ import java.util.Scanner;
 
 public class TestMain {
     public static void main(String[] args) {
-        ArrayList<String> test = new ArrayList<>();
-
-        System.out.println(test.isEmpty());
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(scanner.nextInt());
 
 
     }
 
-    private static String test(String x) {
-        if(x.equalsIgnoreCase("test")) {
-            return "s";
-        } else {
-            return "s";
-        }
-    }
+
 
 }
