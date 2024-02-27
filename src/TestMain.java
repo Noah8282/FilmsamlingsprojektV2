@@ -1,14 +1,21 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TestMain {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        scanner.useDelimiter(",");
-        while(scanner.hasNext()) {
-            System.out.println(scanner.next());
+        ArrayList<String> test = new ArrayList<>();
+
+        System.out.println(test.isEmpty());
+
+
+    }
+
+    private static String test(String x) {
+        if(x.equalsIgnoreCase("test")) {
+            return "s";
+        } else {
+            return "s";
         }
-
-
     }
 
 }

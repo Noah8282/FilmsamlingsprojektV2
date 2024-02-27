@@ -60,7 +60,6 @@ public class MovieCollection {
             return "All values have not been inserted. Please try again";
         }
 
-
         for(Movie m : movieCollection) {
             if(m.getTitle().toLowerCase().equalsIgnoreCase(title)) {
                 m.setTitle(editValues.get(0).trim());
