@@ -59,7 +59,7 @@ public class MovieCollection {
         if(editValues.size() < 6) {
             return "All values have not been inserted. Please try again";
         }
-
+        String message = "";
         for(Movie m : movieCollection) {
             if(m.getTitle().toLowerCase().equalsIgnoreCase(title)) {
                 m.setTitle(editValues.get(0).trim());
@@ -68,12 +68,13 @@ public class MovieCollection {
                 m.setYearCreated(Integer.parseInt(editValues.get(3).trim()));
                 m.setLengthInMinutes(Integer.parseInt(editValues.get(4).trim()));
                 m.setInColor(!(editValues.get(5).trim()).equalsIgnoreCase("no"));
+                message = m.toString();
                 break;
 
             }
 
         }
-        return "Movie " + title + " has been edited!";
+        return "Movie " + title + " has been edited!\n" + message;
     }
 
 
