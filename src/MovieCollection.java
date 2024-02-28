@@ -8,8 +8,6 @@ public class MovieCollection {
 
     public MovieCollection() {
         movieCollection = new ArrayList<>();
-        movieCollection.add(new Movie("Unicorn 1", "Noah", "Action", 2024, 120, true));
-        movieCollection.add(new Movie("Unicorn 2", "Noah", "Action", 2024, 120, true));
     }
 
     public String addMovie(String title, String director, String genre, int yearCreated, int lengthInMinutes, boolean isInColor) {
@@ -30,13 +28,14 @@ public class MovieCollection {
         return "No movie was found to delete";
     }
 
-    public void getList() {
+    public int getList() {
+        int count = 0;
         System.out.println("List of movies");
         for (Movie m : movieCollection) {
             System.out.println(m.toString());
+            count++;
         }
-
-
+        return count;
     }
 
     public int searchMovie(String title) {

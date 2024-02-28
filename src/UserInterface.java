@@ -11,6 +11,7 @@ public class UserInterface {
         controller = new Controller();
         title = "";
         input = "";
+        controller.addMovie("Unicorn 1", "Noah", "Action", 2024, 120, true);
     }
     public void startUI() {
         do {

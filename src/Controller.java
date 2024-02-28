@@ -12,8 +12,8 @@ public class Controller {
 
     }
 
-    public void getList() {
-        movieCollection.getList();
+    public int getList() {
+        return movieCollection.getList();
     }
 
     public int searchMovie(String title) {
