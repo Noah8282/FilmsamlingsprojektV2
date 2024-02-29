@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 
 public class MovieCollection {
@@ -54,7 +55,7 @@ public class MovieCollection {
 
     }
 
-    public String editMovie(String title, ArrayList<String> editValues) {
+    public String editMovie(String title, ArrayList<String> editValues) throws Exception {
         if(editValues.size() < 6) {
             return "All values have not been inserted. Please try again";
         }
@@ -64,8 +65,14 @@ public class MovieCollection {
                 m.setTitle(editValues.get(0).trim());
                 m.setDirector(editValues.get(1).trim());
                 m.setGenre(editValues.get(2).trim());
-                m.setYearCreated(Integer.parseInt(editValues.get(3).trim()));
-                m.setLengthInMinutes(Integer.parseInt(editValues.get(4).trim()));
+                try {
+                    m.setYearCreated(Integer.parseInt(editValues.get(3).trim()));
+                    m.setLengthInMinutes(Integer.parseInt(editValues.get(4).trim()));
+                } catch(NumberFormatException nfe) {
+                    System.out.println("You need to insert a number.");
+                    throw new Exception("Invalid");
+                }
+
                 m.setInColor(!(editValues.get(5).trim()).equalsIgnoreCase("no"));
                 message = m.toString();
                 break;

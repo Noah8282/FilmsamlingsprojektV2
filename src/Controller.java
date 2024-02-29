@@ -24,7 +24,7 @@ public class Controller {
         return movieCollection.removeMovie(title);
     }
 
-    public String editMovie(String title, ArrayList<String> editValues) {
+    public String editMovie(String title, ArrayList<String> editValues) throws Exception {
         return movieCollection.editMovie(title, editValues);
     }
 

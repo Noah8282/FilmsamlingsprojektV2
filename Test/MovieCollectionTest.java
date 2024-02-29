@@ -17,6 +17,19 @@ class MovieCollectionTest {
     }
 
 
+    @Test
+    void addMovie() {
+        //Arrange
+        MovieCollection movieCollection = new MovieCollection();
+
+        //Act
+        movieCollection.addMovie("Unicorn 1", "Noah", "Action", 2024, 120, true);
+        int expectedResult = 1;
+        int actualResult = movieCollection.getList();
+
+        //Assert
+        assertEquals(expectedResult,actualResult);
+    }
 
     @Test
     void removeMovie() {
@@ -24,12 +37,23 @@ class MovieCollectionTest {
         MovieCollection movieCollection = new MovieCollection();
         movieCollection.addMovie("Unicorn 1", "Noah", "Action", 2024, 120, true);
 
-        //Act
-        String expectedResult = "Unicorn 1 has been removed!";;
-        String actualResult = movieCollection.removeMovie("Unicorn 1");
+        //Act test String
+        String expectedResultString = "Unicorn 1 has been removed!";
+        String actualResultString = movieCollection.removeMovie("Unicorn 1");
 
         //Assert
-        assertEquals(expectedResult,actualResult);
+        assertEquals(expectedResultString,actualResultString);
+
+        movieCollection.addMovie("Unicorn 1", "Noah", "Action", 2024, 120, true);
+        movieCollection.addMovie("Unicorn 2", "Noah", "Action", 2024, 120, true);
+
+        //Act Test Length Of List
+        movieCollection.removeMovie("Unicorn 1");
+        int expectedResultInt = 1;
+        int actualResultInt = movieCollection.getList();
+
+        //Assert
+        assertEquals(expectedResultInt,actualResultInt);
 
          /*System.out.println("Hello!");
 
@@ -107,7 +131,7 @@ class MovieCollectionTest {
     }
 
     @Test
-    void editMovieSuccess() {
+    void editMovieSuccess() throws Exception {
         //Arrange
         MovieCollection movieCollection = new MovieCollection();
         movieCollection.addMovie("Hard type", "Peter", "Drama", 2023, 100, false);
@@ -129,7 +153,7 @@ class MovieCollectionTest {
     }
 
     @Test
-    void editMovieInvalid() {
+    void editMovieInvalid() throws Exception {
         //Arrange
         MovieCollection movieCollection = new MovieCollection();
         movieCollection.addMovie("Hard type", "Peter", "Drama", 2023, 100, false);
@@ -143,4 +167,6 @@ class MovieCollectionTest {
 
 
     }
+
+
 }

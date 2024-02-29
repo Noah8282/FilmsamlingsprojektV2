@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -17,18 +18,23 @@ public class UserInterface {
         do {
             menu();
             input = getUserInput();
-            switch (input) {
-                case "add" -> add();
-                case "list" -> controller.getList();
-                case "search" -> search();
-                case "remove" -> remove();
-                case "edit" -> edit();
-                default -> {
-                    if (!input.equals("exit")) {
-                        System.out.println("Not correct input inserted.");
+            try {
+                switch (input) {
+                    case "add" -> add();
+                    case "list" -> controller.getList();
+                    case "search" -> search();
+                    case "remove" -> remove();
+                    case "edit" -> edit();
+                    default -> {
+                        if (!input.equals("exit")) {
+                            System.out.println("Not correct input inserted.");
+                        }
                     }
                 }
+            } catch (Exception e) {
+                System.out.println("An error has occured. Try again.");
             }
+
             System.out.println();
         } while (!input.equals("exit"));
     }
@@ -47,10 +53,15 @@ public class UserInterface {
         return input;
     }
 
-    public int getUserInput(int toInt) {
+    public int getUserInput(int toInt) throws Exception {
         Scanner scanner = new Scanner(System.in);
         scanner.useDelimiter("\n");
-        return scanner.nextInt();
+        try {
+            return scanner.nextInt();
+        }catch(InputMismatchException ime) {
+            System.out.println("You need to enter a number. Try again");
+            throw new Exception("Invalid");
+        }
     }
 
     public void menu() {
@@ -63,7 +74,7 @@ public class UserInterface {
                 "Exit: Exit the program");
     }
 
-    public void add() {
+    public void add() throws Exception {
         String title;
         System.out.println("What is the title of the movie?");
         title = getUserInput(false);
@@ -94,7 +105,7 @@ public class UserInterface {
         System.out.println(controller.removeMovie(title));
     }
 
-    public void edit() {
+    public void edit() throws Exception {
         System.out.println("Please type the title of the movie you'd like to edit");
         title = getUserInput();
         int searhResult = controller.searchMovie(title);
